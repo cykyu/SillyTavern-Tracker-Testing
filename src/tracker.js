@@ -445,7 +445,10 @@ export async function addTrackerToMessage(mesId) {
 		if (manageStopButton) activateSendButtons();
 		return;
 	} else {
-		if(isSystemMessage(mesId)) return;
+		if(isSystemMessage(mesId)) {
+			if (manageStopButton) activateSendButtons();
+			return;
+		}
 		const tempId = chat_metadata?.tracker?.tempTrackerId ?? null;
 		if(chat_metadata?.tracker?.cmdTrackerOverride) {
 			saveTrackerToMessage(mesId, chat_metadata.tracker.cmdTrackerOverride);
